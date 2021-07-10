@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import fetchData from './fetch-data'
+import Header from './components/header'
 
 function App() {
   const [dataJson, setDataJson] = useState(null)
@@ -13,15 +14,11 @@ function App() {
     })
   }, [])
 
-  if (hasFetchError) {
-    return <div><h1>Oh no an error</h1></div>
-  }
-
-  if (!dataJson) {
-    return <div><h1>Loading...</h1></div>
-  }
-
-  return <div><h1>Data fetched successfully</h1></div>
+  return (
+    <div>
+      <Header hasFetchError={hasFetchError} hasFetched={!!dataJson} />
+    </div>
+  )
 }
 
 export default App;
