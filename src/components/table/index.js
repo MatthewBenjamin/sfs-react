@@ -6,7 +6,6 @@ import {
   StyledTd,
   StyledBottomContainerDiv,
   StyledButton,
-  StyledResultsDiv,
   StyledTr,
 } from "./table-styles";
 import {
@@ -21,7 +20,7 @@ import InputDebtTableRow from "./input-debt";
 import { handleAddDebt, handleRemoveDebt } from "./utils";
 
 // TODO: refactor
-const Table = ({ debtArray, setDataJson, total, nextId, setNextId }) => {
+const Table = ({ debtArray, setDataJson, nextId, setNextId }) => {
   const [inputCreditorName, setInputCreditorName] = useState("");
   const [inputFirstName, setInputFirstName] = useState("");
   const [inputLastName, setInputLastName] = useState("");
@@ -151,11 +150,7 @@ const Table = ({ debtArray, setDataJson, total, nextId, setNextId }) => {
         >
           Remove Debt
         </StyledButton>
-        <br />
       </StyledBottomContainerDiv>
-      <StyledResultsDiv>
-        <span>Total:</span> <span>${total.toFixed(2).toString()}</span>
-      </StyledResultsDiv>
     </div>
   );
 };

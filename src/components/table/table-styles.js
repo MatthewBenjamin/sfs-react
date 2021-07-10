@@ -29,14 +29,6 @@ export const StyledInputCheckbox = styled.input`
   margin: 0 1rem;
 `;
 
-export const StyledResultsDiv = styled.div`
-  background: cyan;
-  display: flex;
-  justify-content: space-between;
-  font-weight: bold;
-  padding: 0.5rem;
-`;
-
 export const StyledBottomContainerDiv = styled.div`
   margin: 1rem 0 0.5rem;
 `;

@@ -5,6 +5,14 @@ import fetchData from "./fetch-data";
 import Header from "./components/header";
 import Table from "./components/table";
 
+export const StyledTotalDiv = styled.div`
+  background: cyan;
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  padding: 0.5rem;
+`;
+
 const StyledAppContainerDiv = styled.div`
   max-width: 800px;
   margin: 0 auto;
@@ -68,10 +76,12 @@ function App() {
         <Table
           debtArray={dataJson}
           setDataJson={setDataJson}
-          total={total}
           nextId={nextId}
           setNextId={setNextId}
         />
+        <StyledTotalDiv>
+          <span>Total:</span> <span>${total.toFixed(2).toString()}</span>
+        </StyledTotalDiv>
         <StyledCountContainerDiv>
           <StyledCountSpan>Total Row Count: {totalRowCount}</StyledCountSpan>
           <StyledCountSpan>Check Row Count: {totalCheckCount}</StyledCountSpan>
