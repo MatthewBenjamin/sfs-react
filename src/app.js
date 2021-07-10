@@ -53,7 +53,7 @@ function App() {
       dataJson.reduce(
         (acc, { isChecked, balance: currentBalance }) => {
           if (isChecked) {
-            acc.runningTotal.add(currentBalance);
+            acc.runningTotal = acc.runningTotal.plus(currentBalance);
             acc.runningCheckCount = acc.runningCheckCount + 1;
           }
 
