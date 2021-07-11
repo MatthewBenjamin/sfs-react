@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const ERROR_COPY = "Error fetching data. Try refreshing the page.";
 const LOADING_COPY = "Loading...";
-const SUCCESS_COPY = "Stratgeic FS";
+const SUCCESS_COPY = "Strategic FS";
 
 const StyledH1 = styled.h1`
   /* TODO: global styles for text */
