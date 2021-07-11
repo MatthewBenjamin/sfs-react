@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Big from "big.js";
-import fetchData from "./fetch-data";
+import fetchDebtArray from "./fetch-debt-array";
 import Header from "./components/header";
-import Table from "./components/table";
+import InputTableSection from "./components/InputTableSection";
+import { LOADING_STATUS, ERROR_STATUS, SUCCESS_STATUS } from "./constants";
 
 export const StyledTotalDiv = styled.div`
   background: cyan;
@@ -29,28 +30,30 @@ const StyledCountSpan = styled.span`
 `;
 
 function App() {
-  const [dataJson, setDataJson] = useState([]);
+  const [debtArray, setDebtArray] = useState([]);
   const [nextId, setNextId] = useState(0);
-  const [hasFetchError, setHasFetchError] = useState(false);
-  const [total, setTotal] = useState(new Big("0.00"));
+  const [fetchStatus, setFetchStatus] = useState(LOADING_STATUS);
+  const [total, setTotal] = useState(new Big("0.00")); // putting Big.js instance in state probably not great for memory management
   const [totalRowCount, setTotalRowCount] = useState(0);
   const [totalCheckCount, setTotalCheckCount] = useState(0);
 
   useEffect(() => {
-    fetchData()
+    fetchDebtArray()
       .then((data) => {
         const currentMaxId = data[data.length - 1].id;
         setNextId(currentMaxId + 1);
-        setDataJson(data);
+        setDebtArray(data);
+        setFetchStatus(SUCCESS_STATUS);
       })
       .catch(() => {
-        setHasFetchError(true);
+        setFetchStatus(ERROR_STATUS);
       });
   }, []);
 
+  // compute totals when array updates
   useEffect(() => {
     const { runningTotal: newTotal, runningCheckCount: newCheckCount } =
-      dataJson.reduce(
+      debtArray.reduce(
         (acc, { isChecked, balance: currentBalance }) => {
           if (isChecked) {
             acc.runningTotal = acc.runningTotal.plus(currentBalance);
@@ -65,17 +68,17 @@ function App() {
         }
       );
     setTotal(newTotal);
-    setTotalRowCount(dataJson.length);
+    setTotalRowCount(debtArray.length);
     setTotalCheckCount(newCheckCount);
-  }, [dataJson]);
+  }, [debtArray]);
 
   return (
     <StyledAppContainerDiv>
-      <Header hasFetchError={hasFetchError} hasFetched={!!dataJson} />
+      <Header fetchStatus={fetchStatus} />
       <main>
-        <Table
-          debtArray={dataJson}
-          setDataJson={setDataJson}
+        <InputTableSection
+          debtArray={debtArray}
+          setDebtArray={setDebtArray}
           nextId={nextId}
           setNextId={setNextId}
         />

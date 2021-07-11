@@ -11,6 +11,7 @@ const StyledTdNoPadding = styled(StyledTd)`
   padding: 0;
 `;
 
+// TODO: labels for accessiblity and placeholders
 const InputDebtTableRow = ({
   inputCreditorName,
   setInputCreditorName,

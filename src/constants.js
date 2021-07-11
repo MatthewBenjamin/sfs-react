@@ -20,3 +20,7 @@ export const balance = {
 };
 
 export const INITIAL_ALL_CHECKED = true;
+
+export const LOADING_STATUS = "loading";
+export const ERROR_STATUS = "error";
+export const SUCCESS_STATUS = "success";

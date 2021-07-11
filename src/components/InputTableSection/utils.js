@@ -16,7 +16,7 @@ export const handleAddDebt = (
     setInputLastName,
     setInputMinPaymentPercentage,
     setInputBalance,
-    setDataJson,
+    setDebtArray,
     nextId,
     setNextId,
   }
@@ -50,7 +50,7 @@ export const handleAddDebt = (
     setInputLastName("");
     setInputMinPaymentPercentage("");
     setInputBalance("");
-    setDataJson(newDebtArray);
+    setDebtArray(newDebtArray);
     setNextId(nextId + 1);
   } else {
     setInputCreditorName(ERROR_TEXT);
@@ -61,8 +61,8 @@ export const handleAddDebt = (
   }
 };
 
-export const handleRemoveDebt = (e, { debtArray, setDataJson }) => {
+export const handleRemoveDebt = (e, { debtArray, setDebtArray }) => {
   e.preventDefault();
   const newDebtArray = debtArray.filter(({ isChecked }) => !isChecked);
-  setDataJson(newDebtArray);
+  setDebtArray(newDebtArray);
 };

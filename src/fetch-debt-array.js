@@ -18,9 +18,9 @@ const mapWithChecked = (dataArray) =>
     };
   });
 
-const fetchData = () =>
+const fetchDebtArray = () =>
   fetch(DATA_URI)
     .then((res) => res.json())
     .then(mapWithChecked);
 
-export default fetchData;
+export default fetchDebtArray;
