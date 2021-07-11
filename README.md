@@ -32,6 +32,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 - Written in React w/ hooks
 - [styled-components](https://styled-components.com/) for CSS
 - Uses native `fetch` to get JSON data
+- [big.js](https://github.com/MikeMcl/big.js) for performant, arbitrary-precision decimal arithmetic
 - Totals calculated on state changes (including after initial data load)
 - Users can:
   - add or remove rows of data
