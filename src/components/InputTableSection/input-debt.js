@@ -11,6 +11,8 @@ const StyledTdNoPadding = styled(StyledTd)`
   padding: 0;
 `;
 
+const replaceWithOnlyFloatNumber = (value) => value.replace(/[^\d.-]/g, "");
+
 // TODO: labels for accessiblity and placeholders
 const InputDebtTableRow = ({
   inputCreditorName,
@@ -60,7 +62,11 @@ const InputDebtTableRow = ({
         value={inputMinPaymentPercentage}
         onChange={(e) => {
           e.preventDefault();
-          setInputMinPaymentPercentage(e.target.value);
+          e.preventDefault();
+          const newInputMinPaymentPercentage = replaceWithOnlyFloatNumber(
+            e.target.value
+          );
+          setInputMinPaymentPercentage(newInputMinPaymentPercentage);
         }}
       ></StyledInput>
     </StyledTdNoPadding>
@@ -69,7 +75,7 @@ const InputDebtTableRow = ({
         value={inputBalance}
         onChange={(e) => {
           e.preventDefault();
-          const newInputBalance = e.target.value.replace(/[^\d.-]/g, "");
+          const newInputBalance = replaceWithOnlyFloatNumber(e.target.value);
           setInputBalance(newInputBalance);
         }}
       ></StyledInput>
